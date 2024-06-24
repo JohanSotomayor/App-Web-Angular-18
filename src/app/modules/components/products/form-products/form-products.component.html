@@ -1,0 +1,87 @@
+<div class="big-wrapper">
+  <div class="header">
+    <h1 class="m-0 text-center">{{option == "create"? "Crear Producto" : "Editar producto"}}</h1>
+  </div>
+  <div class="content" [formGroup]="form"> <!---->
+
+    <mat-form-field class="w-100" appearance="outline" color="primary">
+      <mat-label>Nombre</mat-label>
+      <input type="text" matInput formControlName="FC_name"  placeholder="Nombre...">
+      @if (name.hasError('required')) {
+        <mat-error>El nombre es <strong>requerido</strong></mat-error>
+      }
+      @if (name.hasError('minlength') && !name.hasError('required')) {
+        <mat-error>El mínimo de caracteres es 4</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="w-100" appearance="outline" color="primary">
+      <mat-label>Codigo</mat-label>
+      <input type="text" matInput formControlName="FC_code"  placeholder="####">
+      @if (code.hasError('required')) {
+        <mat-error>El Codigo es <strong>requerido</strong></mat-error>
+      }
+      @if (code.hasError('minlength') && !code.hasError('required')) {
+        <mat-error>El mínimo de caracteres es 4</mat-error>
+      }
+    </mat-form-field>
+
+
+    <mat-form-field class="w-100" appearance="outline" color="primary">
+      <mat-label>Descripción <small>(opcional)</small></mat-label>
+      <input type="text" matInput formControlName="FC_description"  placeholder="...">
+    </mat-form-field>
+
+    <mat-form-field class="w-100" appearance="outline" color="primary">
+      <mat-label>Aplica IVA?</mat-label>
+      <mat-select formControlName="FC_hasIva" >
+        <mat-option [value]="true">SI</mat-option>
+        <mat-option [value]="false">NO</mat-option>
+        </mat-select>
+        @if (hasIva.hasError('required')) {
+          <mat-error>Seleccion una opción, el campo es <strong>requerido</strong></mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field class="w-100" appearance="outline" color="primary">
+      <mat-label>Porcentaje de IVA</mat-label>
+      <input type="number"  matInput formControlName="FC_percentIva"  placeholder="0.0">
+    </mat-form-field>
+
+    <mat-form-field class="w-100" appearance="outline" color="primary">
+      <mat-label> Precio</mat-label>
+      <input type="text" matInput formControlName="FC_price"  placeholder="0">
+      @if (price.hasError('required')) {
+        <mat-error>El Precio es <strong>requerido</strong></mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="w-100" appearance="outline" color="primary">
+      <mat-label> Cantidad </mat-label>
+      <input type="number" matInput formControlName="FC_stock"  placeholder="0.0">
+      @if (stock.hasError('required')) {
+        <mat-error>La cantidad es <strong>requerida</strong></mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="w-100" appearance="outline" color="primary">
+      <mat-label>Categoria</mat-label>
+      <mat-select formControlName="FC_category" >
+        @for (option of listCategories; track option; let index = $index) {
+          <mat-option [value]="index + 1">{{option}}</mat-option>
+        }
+        </mat-select>
+        @if (category.hasError('required')) {
+          <mat-error>Seleccion una opción, el campo es <strong>requerido</strong></mat-error>
+        }
+    </mat-form-field>
+
+
+    <div class="w-100 flex justify-content-end">
+      <button mat-button class="mr-3" (click)="cancel()">Cancelar</button>
+        <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="createItem()">Crear</button>
+     
+    </div>
+  </div>
+</div>
+

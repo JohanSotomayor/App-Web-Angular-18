@@ -32,11 +32,15 @@
         } @else {
           <ng-container [matColumnDef]="column.name" [sticky]="column.sticky">
             <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!column.sortable" cdkDrag> {{column.viewValue}} </th>
-            @if(!column.isDate) {
-              <td mat-cell *matCellDef="let element"> {{ !column.isTitlecase ? element[column.name] : (element[column.name] | titlecase)}} </td>
-            } @else {
+            @if(column.isDate) {
               <td mat-cell *matCellDef="let element"> {{element[column.name] ? (element[column.name] | date: "dd/MMM/YYYY, h:mm a") : ""}} </td>
             }
+            @else if(column.isCurrency) {
+              <td mat-cell *matCellDef="let element"> {{element[column.name]  ?  "$" + ( element[column.name] | currency:'COP':'':'1.0-0' ): "$0" }} </td>
+            } @else {
+              <td mat-cell *matCellDef="let element"> {{ !column.isTitlecase ? element[column.name] : (element[column.name] | titlecase)}} </td>
+            }
+            
           </ng-container>
         }
       }

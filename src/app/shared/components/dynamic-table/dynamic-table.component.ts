@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkDropList, CdkDrag, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { DatePipe, TitleCasePipe } from '@angular/common';
+import { CommonModule,CurrencyPipe,DatePipe, TitleCasePipe} from '@angular/common';
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, Signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -14,7 +14,7 @@ import Swal, { SweetAlertResult } from 'sweetalert2';
 @Component({
   standalone: true,
   selector: 'dynamic-table',
-  imports: [MatTableModule, MatSortModule, MatPaginatorModule, MatButtonModule, MatCheckboxModule, MatInputModule, CdkDropList, CdkDrag, DatePipe, TitleCasePipe],
+  imports: [CommonModule, MatTableModule, MatSortModule, MatPaginatorModule, MatButtonModule, MatCheckboxModule, MatInputModule, CdkDropList, CdkDrag, DatePipe, TitleCasePipe,CurrencyPipe],
   templateUrl: './dynamic-table.component.html',
   styleUrls: ['./dynamic-table.component.scss']
 })

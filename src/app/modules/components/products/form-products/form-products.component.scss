@@ -1,0 +1,21 @@
+.big-wrapper {
+    width: 650px;
+    height: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    .header {
+
+    }
+
+    .content {
+        box-sizing: border-box;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem 2rem 0;
+
+    }
+}
+

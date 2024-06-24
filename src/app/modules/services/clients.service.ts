@@ -36,7 +36,7 @@ getAll() {
 }
 
 create(client: IClient) {
-  return this.http.post(`${environment.apiREST}/clients`, client)
+  return this.http.post(`${environment.apiREST}/clients/`, client)
   .pipe(
     tap((result:any) => {
       let client = result?.data;

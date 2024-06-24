@@ -4,5 +4,6 @@ export default interface ITableColumn {
     sortable: boolean,
     sticky: boolean,
     isDate?: boolean,
+    isCurrency?: boolean,
     isTitlecase?: boolean
 }
