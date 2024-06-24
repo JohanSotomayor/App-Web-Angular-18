@@ -1,0 +1,68 @@
+@import '../../../../assets/scss/colors.scss';
+
+$headerHeight: 60px;
+$footerHeight: 60px;
+$contentHeight: calc(100% - ($headerHeight + $footerHeight));
+.big-wrapper {
+    width: 100%;
+    height: 100%;
+    .header {
+        width: 100%;
+        height: $headerHeight;
+        display: flex;
+        align-items: center;
+        padding-left: 2rem;
+        box-sizing: border-box;
+    
+        &__title {
+            width: 50%;
+            display: flex;
+        }
+        &__filter {
+            width: 50%;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            
+            input {
+                width: 15rem;
+                height: 2.5rem;
+                border: 1px solid $lightgrey;
+                border-radius: .2rem;
+                padding: 0 .5rem;
+            }
+    
+            input:focus {
+                outline-color: $red;
+            }
+    
+        }
+    }
+    
+    .content {
+        overflow-y: auto;
+        width: 100%;
+        height: $contentHeight;
+    }
+    
+    .footer {
+        width: 100%;
+        height: $footerHeight;
+        display: flex;
+    
+        .controls {
+            display: flex;
+            width: 30%;
+            align-items: center;
+            padding-left: 1rem;
+            gap: 1rem;
+        }
+    
+        .pagination {
+            display: flex;
+            justify-content: end;
+            width: 70%;
+            height: 100%;
+        }
+    }
+}

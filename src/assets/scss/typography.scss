@@ -1,0 +1,162 @@
+
+/* Text decoration */
+.underline {
+    text-decoration: underline;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.overline {
+    text-decoration: overline;
+}
+
+.no-font-style {
+    text-decoration: none;
+}
+
+ /* ============================== */
+
+
+/* Font Size */
+
+.font-xs {
+    font-size: .75rem;
+}
+
+.font-sm {
+    font-size: .875rem;
+}
+
+.font-base {
+    font-size: 1rem;
+}
+
+.font-lg {
+    font-size: 1.125rem;
+}
+
+.font-xl {
+    font-size: 1.25rem;
+}
+
+.font-xxl {
+    font-size: 1.5rem;
+}
+
+.font-xxxl {
+    font-size: 1.75rem;
+}
+
+.font-xxxxl {
+    font-size: 2rem;
+}
+
+.font-xxxxl {
+    font-size: 2rem;
+}
+ /* ============================== */
+
+
+/* Alignment */
+
+.text-center {
+    text-align: center;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+ /* ============================== */
+
+
+/* TRANSFORM */
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+ /* ============================== */
+
+ /* ALIGN TEXT */
+
+.vertical-align-baseline {
+    vertical-align: baseline;
+}	
+.vertical-align-top	{
+    vertical-align: top;
+}
+.vertical-align-middle	{
+    vertical-align: middle;
+}
+.vertical-align-bottom	{
+    vertical-align: bottom;
+}
+.vertical-align-text-top	{
+    vertical-align: text-top;
+}
+.vertical-align-text-bottom	{
+    vertical-align: text-bottom;
+}
+.vertical-align-sub	{
+    vertical-align: sub;
+}
+.vertical-align-super	{
+    vertical-align: super;
+}
+
+ /* ============================== */
+
+  /* COLORS */
+
+  .text-white{
+    color: #ffffff;
+  }
+
+  //WEIGTH
+ 
+  .fw-1 {
+      font-weight: 100;
+  }
+
+  .fw-2 {
+      font-weight: 200;
+  }
+
+  .fw-3 {
+      font-weight: 300;
+  }
+
+  .fw-4 {
+      font-weight: 400;
+  }
+
+  .fw-5 {
+      font-weight: 500;
+  }
+
+  .fw-6 {
+      font-weight: 600;
+  }
+
+  .fw-7 {
+      font-weight: 700;
+  }
+
+  .fw-8 {
+      font-weight: 800;
+  }
+
+  .fw-9 {
+      font-weight: 900;
+  }

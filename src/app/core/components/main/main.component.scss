@@ -1,0 +1,55 @@
+@import '../../../../assets/scss/colors.scss';
+$navbarHeight: 70px;
+$sidebarExpanded: 300px;
+
+.big-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+
+    .sidebar, .content {
+        transition: width .2s ease;
+        height: 100%;
+    }
+    .sidebar {
+        width: 300px;
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        /* box-shadow: 0 1px 3px #dedede; */
+        border-right: solid 1px lighten($lightgrey, 5);
+        overflow-x: hidden;
+        white-space: nowrap;
+        background-color: $main;
+
+    }
+
+    .sidebar--expanded {
+        width: $sidebarExpanded;
+    }
+
+    mat-drawer-container {
+
+        mat-drawer-content {
+            background-color: white;
+            .content {
+                width: 100vw;
+                display: flex;
+                flex-direction: column;
+                &_navbar {
+                    height: $navbarHeight;
+                }
+                &_modules {
+                    height: calc(100% - $navbarHeight);
+        
+                }
+            }
+        
+            .content--expanded {
+                width: calc(100vw - $sidebarExpanded);
+            }
+        }
+    
+    }
+}

@@ -1,0 +1,25 @@
+<div class="big-wrapper">
+  <mat-drawer-container [hasBackdrop]="true">
+    <mat-drawer #sidebar mode="over" position="end" [disableClose]="true">
+      @defer (when formOption.length > 0) {
+        @if (formOption.length > 0) {
+          <form-clients #form [option]="formOption" [itemToUpdate]="itemToUpdate" (createEvent)="createItem($event)"
+           (cancelEvent)="cancel()"></form-clients> 
+        }
+      }
+    </mat-drawer>
+    <mat-drawer-content>
+      <div class="table-wrapper">
+
+        <dynamic-table #dynamicTable 
+        (setCreateEvent)="setCreateItem()" 
+        (setDeleteEvent)="deleteItem($event)" 
+        header="Clientes">
+      </dynamic-table>
+      </div>
+
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+
+</div>

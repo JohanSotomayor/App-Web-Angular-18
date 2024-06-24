@@ -1,0 +1,64 @@
+<div class="big-wrapper">
+    <div class="header">
+      <h1 class="m-0 text-center">{{option == "create"? "Crear cliente" : "Editar cliente"}}</h1>
+    </div>
+    <div class="content" [formGroup]="form"> <!---->
+
+      <mat-form-field class="w-100" appearance="outline" color="primary">
+        <mat-label>Nombre</mat-label>
+        <input type="text" matInput formControlName="FC_name"  placeholder="Nombre...">
+        @if (name.hasError('required')) {
+          <mat-error>El nombre es <strong>requerido</strong></mat-error>
+        }
+        @if (name.hasError('minlength') && !name.hasError('required')) {
+          <mat-error>El mínimo de caracteres es 3</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="outline" color="primary">
+        <mat-label>Numero de identificación</mat-label>
+        <input type="text" matInput formControlName="FC_cardId"  placeholder="CC">
+        @if (cardId.hasError('required')) {
+          <mat-error>El Numero de identificación es <strong>requerido</strong></mat-error>
+        }
+        @if (cardId.hasError('minlength') && !name.hasError('required')) {
+          <mat-error>El mínimo de caracteres es 7</mat-error>
+        }
+      </mat-form-field>
+  
+  
+      <mat-form-field class="w-100" appearance="outline" color="primary">
+        <mat-label>Teléfono <small>(opcional)</small></mat-label>
+        <input type="text" matInput formControlName="FC_phone"  placeholder="6017431111">
+        @if (phone.hasError('minlength')) {
+          <mat-error>El teléfono debe tener mínimo 3 caracteres</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="outline" color="primary">
+        <mat-label>Dirección <small>(opcional)</small></mat-label>
+        <input type="text" matInput formControlName="FC_address"  placeholder="6017431111">
+        @if (address.hasError('minlength')) {
+          <mat-error>El teléfono debe tener mínimo 3 caracteres</mat-error>
+        }
+      </mat-form-field>
+  
+      <mat-form-field class="w-100" appearance="outline" color="primary">
+        <mat-label>Correo electrónico</mat-label>
+        <input type="email" matInput formControlName="FC_email"  placeholder="correo@dominio.com">
+        @if (email.hasError('required')) {
+            <mat-error>El correo es <strong>requerido</strong></mat-error>
+          }
+        @if (email.hasError('email') && !email.hasError('required')) {
+          <mat-error>El correo es inválido</mat-error>
+        }
+      </mat-form-field>
+  
+  
+      <div class="w-100 flex justify-content-end">
+        <button mat-button class="mr-3" (click)="cancel()">Cancelar</button>
+          <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="createItem()">Crear</button>
+       
+      </div>
+    </div>
+</div>
+
