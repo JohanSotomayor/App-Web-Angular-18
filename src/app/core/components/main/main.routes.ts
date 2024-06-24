@@ -20,11 +20,11 @@ export const routes: Routes = [
             path: "products",
             loadComponent: () => import('../../../modules/components/products/products.component').then(c => c.ProductsComponent),
           },
-        //   {
-        //     path: "clients",
-        //     loadComponent: () => import('./components/clients/clients.component').then(c => c.ClientsComponent),
-        //     // canActivate: [InternalOnlyGuard, AdminTemporalGuard]
-        //   },
+          {
+            path: "registerSale",
+            loadComponent: () => import('../../../modules/components/registerSales/registerSales.component').then(c => c.RegisterSalesComponent),
+          },
+      
         ]
       },
   ];

@@ -42,8 +42,8 @@ export class ProductsComponent implements OnInit {
   getAll() {
     this.productsService.getAll();
     this.productsService.getArray().subscribe({
-      next: (clients: Array<IProduct>) => {
-        this.array.set([...clients]);
+      next: (products: Array<IProduct>) => {
+        this.array.set([...products]);
         this.setColumnsToTable();
         this.setDataToTable(this.array());
       },
@@ -92,7 +92,7 @@ export class ProductsComponent implements OnInit {
 
 
   deleteItem(product: Array<IProduct>) {
-    let productsToDelete = product.length == 1 ? [product[0].productID] : product.map((client: IProduct) => client.productID)
+    let productsToDelete = product.length == 1 ? [product[0].productID] : product.map((product: IProduct) => product.productID)
     
     this.productsService.delete(productsToDelete).pipe(takeUntil(this.destroyed$)).subscribe({
       next: (result: any) => {

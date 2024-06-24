@@ -1,0 +1,61 @@
+<div class="big-wrapper">
+  <div class="header">
+    <h1 class="m-0 text-center">{{option == "create"? "Crear cabecera venta" : "Editar cabecera venta"}}</h1>
+  </div>
+  <div class="content" [formGroup]="form"> <!---->
+
+
+    <mat-form-field class="w-100" appearance="outline" color="primary">
+      <mat-label>Clientes</mat-label>
+      <mat-select formControlName="FC_clientName" >
+        @for (client of listClient; track option) {
+          <mat-option [value]="client.clientID">{{client.name}}</mat-option>
+        }
+        </mat-select>
+        @if (clientName.hasError('required')) {
+          <mat-error>Seleccion una opción, el campo es <strong>requerido</strong></mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field class="w-100" appearance="outline" color="primary">
+      <mat-label>Consecutivo de venta</mat-label>
+      <input type="text" matInput formControlName="FC_consecutive"  placeholder="Nombre...">
+      @if (consecutive.hasError('required')) {
+        <mat-error>El nombre es <strong>requerido</strong></mat-error>
+      }
+      @if (consecutive.hasError('minlength') && !consecutive.hasError('required')) {
+        <mat-error>El mínimo de caracteres es 8</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="w-100" appearance="outline" color="primary">
+      <mat-label>Fecha</mat-label>
+      <input matInput formControlName="FC_orderDate" [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      @if (orderDate.hasError('required')) {
+        <mat-error>El Codigo es <strong>requerido</strong></mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="w-100" appearance="outline" color="primary">
+      <mat-label> Total</mat-label>
+      <input type="text" matInput formControlName="FC_totalAmount"  placeholder="0">
+      @if (totalAmount.hasError('required')) {
+        <mat-error>El Total es <strong>requerido</strong></mat-error>
+      }
+    </mat-form-field>
+
+
+ 
+
+
+    <div class="w-100 flex justify-content-end">
+      <button mat-button class="mr-3" (click)="cancel()">Cancelar</button>
+        <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="createItem()">Crear</button>
+     
+    </div>
+  </div>
+</div>
+

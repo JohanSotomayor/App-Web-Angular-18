@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environment/environment';
-import IProduct from '@shared/interfaces/IProduct';
+import ISale from '@shared/interfaces/IRegisterSale';
 import { BehaviorSubject, map, take, tap } from 'rxjs';
 
 
@@ -9,13 +9,13 @@ import { BehaviorSubject, map, take, tap } from 'rxjs';
   providedIn: 'root'
 })
 
-export class ProductsService {
+export class RegisterSaleService {
 
-private array: BehaviorSubject<Array<IProduct>> = new BehaviorSubject([] as Array<IProduct>);
+private array: BehaviorSubject<Array<ISale>> = new BehaviorSubject([] as Array<ISale>);
 
 constructor(private http: HttpClient) { }
 
-setArray(value: Array<IProduct>) {
+setArray(value: Array<ISale>) {
   this.array.next(value);
 }
 
@@ -25,7 +25,7 @@ getArray() {
 }
 
 getAll() {
-  this.http.get(`${environment.apiREST}/products`).subscribe((result: any) => {
+  this.http.get(`${environment.apiREST}/orders`).subscribe((result: any) => {
     console.log(result)
     if(result?.data?.length > 0) {
       this.setArray(result?.data);
@@ -35,19 +35,19 @@ getAll() {
   })
 }
 
-create(client: IProduct) {
-  return this.http.post(`${environment.apiREST}/products/`, client)
+create(client: ISale) {
+  return this.http.post(`${environment.apiREST}/orders/`, client)
   .pipe(
     tap((result:any) => {
-      let product = result?.data;
-      if(product) {
+      let sales = result?.data;
+      if(sales) {
         this.getAll()
       }
     })
   );
 }
 
-async createLocal(item: IProduct) {
+async createLocal(item: ISale) {
   let arrayData = this.array.getValue();
   if(arrayData?.length > 0) {
     let arr = [...arrayData || []];
@@ -57,16 +57,16 @@ async createLocal(item: IProduct) {
 
 }
 
-delete(productsToDelete: any) {
+delete(salesToDelete: any) {
 
-  const idParams = productsToDelete
+  const idParams = salesToDelete
   console.log(idParams)
-  return this.http.delete(`${environment.apiREST}/products/?ids=${idParams}`).pipe(
+  return this.http.delete(`${environment.apiREST}/orders/?ids=${idParams}`).pipe(
     tap((result) => {
       console.log(result)
       if(result) {
-        for(let product of productsToDelete) {
-          this.deleteLocal(product);
+        for(let sales of salesToDelete) {
+          this.deleteLocal(sales);
         }
       }
     })
@@ -76,7 +76,7 @@ delete(productsToDelete: any) {
 deleteLocal(id: number) {
   let arrayData = this.array.getValue();
   if(arrayData?.length > 0) {
-    arrayData = arrayData.filter((data: IProduct) => data.productID != id);
+    arrayData = arrayData.filter((data: ISale) => data.orderID != id);
     this.setArray(arrayData);
   }
 }

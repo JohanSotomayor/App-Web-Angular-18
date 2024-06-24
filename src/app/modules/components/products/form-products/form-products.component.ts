@@ -92,7 +92,6 @@ listCategories : Array<ListCategories> = Object.values(ListCategories)
 
   createItem() {
       
-debugger
     let product: IProduct = {
       name: this.name.value,
       code: this.code.value,
