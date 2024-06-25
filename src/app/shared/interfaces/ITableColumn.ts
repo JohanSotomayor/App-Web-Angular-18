@@ -5,5 +5,6 @@ export default interface ITableColumn {
     sticky: boolean,
     isDate?: boolean,
     isCurrency?: boolean,
+    isDetail?: boolean,
     isTitlecase?: boolean
 }

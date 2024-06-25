@@ -15,8 +15,13 @@ $contentHeight: calc(100% - ($headerHeight + $footerHeight));
         box-sizing: border-box;
     
         &__title {
+
             width: 50%;
             display: flex;
+            align-self: baseline;
+            align-items: baseline;
+            gap: 10px;
+
         }
         &__filter {
             width: 50%;
@@ -44,6 +49,12 @@ $contentHeight: calc(100% - ($headerHeight + $footerHeight));
         width: 100%;
         height: $contentHeight;
     }
+    mat-icon{
+        cursor: pointer;
+    }
+    mat-icon:hover{
+        color:$main;
+    }
     
     .footer {
         width: 100%;
@@ -66,3 +77,7 @@ $contentHeight: calc(100% - ($headerHeight + $footerHeight));
         }
     }
 }
+.row-header{
+    background-color: $lightgrey !important;
+}
+

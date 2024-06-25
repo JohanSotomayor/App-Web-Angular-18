@@ -4,17 +4,23 @@ import { CommonModule,CurrencyPipe,DatePipe, TitleCasePipe} from '@angular/commo
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, Signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
+
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
 import ITableColumn from '@shared/interfaces/ITableColumn';
 import Swal, { SweetAlertResult } from 'sweetalert2';
 
 @Component({
   standalone: true,
   selector: 'dynamic-table',
-  imports: [CommonModule, MatTableModule, MatSortModule, MatPaginatorModule, MatButtonModule, MatCheckboxModule, MatInputModule, CdkDropList, CdkDrag, DatePipe, TitleCasePipe,CurrencyPipe],
+  imports: [CommonModule,FormsModule, MatTableModule,MatDatepickerModule, MatIconModule,MatSortModule, MatPaginatorModule, MatButtonModule, MatCheckboxModule, MatInputModule, CdkDropList, CdkDrag, DatePipe, TitleCasePipe,CurrencyPipe],
+  providers:[provideNativeDateAdapter()],
   templateUrl: './dynamic-table.component.html',
   styleUrls: ['./dynamic-table.component.scss']
 })
@@ -25,11 +31,14 @@ export class DynamicTableComponent implements OnInit, AfterViewInit {
   @Output("setCreateEvent") setCreateEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output("setUpdateEvent") setUpdateEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output("setDeleteEvent") setDeleteEvent: EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
+  @Output("openDetailEvent") openDetailEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output("searchDateEvent") searchDateEvent: EventEmitter<any> = new EventEmitter<any>();
   
   columns: Array<ITableColumn> = [];
   displayedColumns: Array<string> = [];
   dataSource = new MatTableDataSource();
   selection = new SelectionModel<any>(true, []);
+  dateSearch: string = ''
 
   constructor() { }
 
@@ -91,6 +100,19 @@ export class DynamicTableComponent implements OnInit, AfterViewInit {
 
   setUpdateItem() {
     this.setUpdateEvent.emit(this.selection.selected[0]);
+  }
+
+  searchDate(){
+    console.log(this.dateSearch)
+    let date = new Date(this.dateSearch)
+    let newDate = date.toISOString().split('T')[0];
+    console.log(newDate)
+    this.searchDateEvent.emit(newDate);
+  }
+
+  openDetail(element:any) {
+    
+    this.openDetailEvent.emit(element);
   }
 
   setDeleteItem() {

@@ -6,4 +6,5 @@ export default interface ISale {
     totalAmount :number
     clientName?:string,
     clientCardId?:string,
+    orderDetails?:Array<any>
 }

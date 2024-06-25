@@ -12,6 +12,7 @@ import { BehaviorSubject, map, take, tap } from 'rxjs';
 export class RegisterSaleService {
 
 private array: BehaviorSubject<Array<ISale>> = new BehaviorSubject([] as Array<ISale>);
+private arrayOrder: BehaviorSubject<ISale> = new BehaviorSubject({} as ISale);
 
 constructor(private http: HttpClient) { }
 
@@ -24,6 +25,14 @@ getArray() {
   return this.array;
 }
 
+setArrayOrder(value:ISale) {
+  this.arrayOrder.next(value);
+}
+
+getArrayOrder() {
+  return this.arrayOrder;
+}
+
 getAll() {
   this.http.get(`${environment.apiREST}/orders`).subscribe((result: any) => {
     console.log(result)
@@ -32,6 +41,26 @@ getAll() {
     } else {
       this.setArray([])
     };
+  })
+}
+
+
+getOrder(id:number) {
+  this.http.get(`${environment.apiREST}/orderDetails/${id}`).subscribe((result: any) => {
+    console.log(result)
+    if(result?.data) {
+      this.setArrayOrder(result?.data);
+    } 
+  })
+}
+getSearchDate(date:Date) {
+  this.http.get(`${environment.apiREST}/orders/dates/?date=${date}`).subscribe((result: any) => {
+    console.log(result)
+    if(result?.data) {
+      if(result?.data.length > 0) this.setArray(result?.data);
+      else this.setArray([]);
+      
+    } 
   })
 }
 

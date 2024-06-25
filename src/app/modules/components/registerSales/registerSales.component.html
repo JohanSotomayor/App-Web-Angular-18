@@ -4,7 +4,8 @@
     <mat-drawer #sidebar mode="over" position="end" [disableClose]="true">
       @defer (when formOption.length > 0) {
         @if (formOption.length > 0) {
-          <form-registerSales #form [option]="formOption" [itemToUpdate]="itemToUpdate" (createEvent)="createItem($event)"
+          <form-registerSales #form [option]="formOption" [orderSelect]="orderSelect" [registerProducts]="registerProducts" [itemToUpdate]="itemToUpdate" (createEvent)="createItem($event)"
+          (createOrderEvent)="createOrderDetail($event)"
            (cancelEvent)="cancel()"></form-registerSales> 
         }
       }
@@ -15,7 +16,9 @@
         <dynamic-table #dynamicTable 
         (setCreateEvent)="setCreateItem()" 
         (setDeleteEvent)="deleteItem($event)" 
-        header="Registro cabecera de ventas">
+        (openDetailEvent)="openDetail($event)" 
+        (searchDateEvent)="searchDate($event)" 
+        header="Registro de ventas">
       </dynamic-table>
       </div>
 
